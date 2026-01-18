@@ -1,0 +1,134 @@
+.bootcamps-section {
+  padding: 60px 0;
+}
+
+.bootcamps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.bootcamp-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.bootcamp-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(18, 184, 134, 0.15);
+}
+
+.bootcamp-header {
+  background: linear-gradient(135deg, rgba(11, 107, 99, 0.1) 0%, rgba(18, 184, 134, 0.1) 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.bootcamp-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.level {
+  background: var(--primary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.bootcamp-details {
+  padding: 20px;
+  flex: 1;
+}
+
+.detail {
+  margin-bottom: 12px;
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.detail:last-child {
+  margin-bottom: 0;
+}
+
+.detail.price {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.detail .label {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.bootcamp-card .btn-primary {
+  margin: 0 20px 20px;
+}
+
+.bootcamp-benefits {
+  padding: 60px 0;
+  background: var(--bg);
+  border-radius: 12px;
+  margin-top: 40px;
+}
+
+.bootcamp-benefits h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.benefit {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.benefit-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.benefit h4 {
+  margin-bottom: 8px;
+}
+
+.benefit p {
+  color: var(--gray);
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .bootcamps-section {
+    padding: 40px 0;
+  }
+
+  .bootcamps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bootcamp-benefits {
+    padding: 40px 0;
+  }
+}
