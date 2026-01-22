@@ -13,6 +13,22 @@ const Header = () => {
     }
   }, [mobileNavActive]);
 
+  // Scroll effect for header
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = document.getElementById("header");
+      if (header) {
+        if (window.scrollY > 20) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const toggleMobileNav = () => {
     setMobileNavActive(!mobileNavActive);
   };
@@ -23,17 +39,19 @@ const Header = () => {
 
   return (
     <header id="header" className="header d-flex align-items-center sticky-top">
-      <div className="container d-flex align-items-center justify-content-between">
+      <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
         {/* Logo */}
         <a href="/" className="logo d-flex align-items-center">
           <img src={logoImg} alt="Techackode Edutech" className="logo-img" />
-          {/* Optional: text next to logo */}
-          <h1 className="ms-2 sitename">Techackode Edutech</h1>
+          <h1 className="sitename">Techackode Edutech</h1>
         </a>
 
         {/* Navigation */}
         <nav id="navmenu" className="navmenu">
+          {/* Backdrop for mobile drawer */}
+          <div className="mobile-nav-overlay" onClick={closeMobileNav}></div>
+
           <ul>
             <li>
               <a href="#hero" className="active" onClick={closeMobileNav}>
@@ -51,15 +69,13 @@ const Header = () => {
 
           {/* Mobile Toggle Icon */}
           <i
-            className={`mobile-nav-toggle d-xl-none bi ${
-              mobileNavActive ? "bi-x" : "bi-list"
-            }`}
+            className={`mobile-nav-toggle d-xl-none bi ${mobileNavActive ? "bi-x" : "bi-list"}`}
             onClick={toggleMobileNav}
           ></i>
         </nav>
 
         {/* CTA Button */}
-        <a href="/enroll" className="btn-getstarted">
+        <a href="/enroll" className="btn-getstarted d-none d-md-block">
           Enroll Now
         </a>
 

@@ -66,7 +66,7 @@ const capabilitiesData = [
 ========================= */
 const WhyUs = () => {
   return (
-    <section id="why-us" className="why-us section light-background">
+    <section id="why-us" className="why-us section">
       {/* Section Title */}
       <div className="container section-title" data-aos="fade-up">
         <h2>Why Techackode Edutech</h2>
@@ -133,9 +133,8 @@ const WhyUs = () => {
               {featuresData.map((feature, idx) => (
                 <div
                   key={idx}
-                  className={`feature-box ${
-                    feature.highlight ? "highlight" : ""
-                  }`}
+                  className={`feature-box ${feature.highlight ? "highlight" : ""
+                    }`}
                   data-aos="fade-up"
                   data-aos-delay={feature.delay}
                 >

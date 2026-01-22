@@ -60,7 +60,7 @@ const testimonialsData = [
 ========================= */
 const Testimonials = () => {
   return (
-    <section id="testimonials" className="testimonials section">
+    <section id="testimonials" className="testimonials section light-background">
       {/* SECTION TITLE */}
       <div className="container section-title" data-aos="fade-up">
         <h2>What Our Learners Say</h2>
@@ -77,12 +77,12 @@ const Testimonials = () => {
             <div className="testimonials-sidebar">
               {/* AVATAR STACK */}
               <div className="avatar-stack">
-  <img src={personM3} alt="Learner" className="avatar" />
-  <img src={personF9} alt="Learner" className="avatar" />
-  <img src={personM9} alt="Learner" className="avatar" />
-  <img src={personM11} alt="Learner" className="avatar" />
-  <span className="avatar-count">+1K</span>
-</div>
+                <img src={personM3} alt="Learner" className="avatar" />
+                <img src={personF9} alt="Learner" className="avatar" />
+                <img src={personM9} alt="Learner" className="avatar" />
+                <img src={personM11} alt="Learner" className="avatar" />
+                <span className="avatar-count">+1K</span>
+              </div>
 
 
               {/* SIDEBAR CONTENT */}

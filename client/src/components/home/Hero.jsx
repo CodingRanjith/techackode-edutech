@@ -1,22 +1,9 @@
-import React, { useEffect } from "react";
-
-// AOS & PureCounter
-import AOS from "aos";
-import "aos/dist/aos.css";
-import PureCounter from "@srexi/purecounterjs";
+import React from "react";
 
 // Hero Image
 import heroImg from "../../assets/img/home/hero-img.png";
 
 const CoursesHero = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-
-    new PureCounter();
-  }, []);
 
   return (
     <section id="courses-hero" className="courses-hero section light-background">
@@ -35,36 +22,36 @@ const CoursesHero = () => {
                 </p>
 
                 <div className="hero-stats">
-  <div className="stat-item">
-    <span
-      className="number purecounter"
-      data-purecounter-start="0"
-      data-purecounter-end="40"
-      data-purecounter-duration="2"
-    ></span>
-    <span className="label">Learners Trained</span>
-  </div>
+                  <div className="stat-item">
+                    <span
+                      className="number purecounter"
+                      data-purecounter-start="0"
+                      data-purecounter-end="40"
+                      data-purecounter-duration="2"
+                    ></span>
+                    <span className="label">Learners Trained</span>
+                  </div>
 
-  <div className="stat-item">
-    <span
-      className="number purecounter"
-      data-purecounter-start="0"
-      data-purecounter-end="35"
-      data-purecounter-duration="2"
-    ></span>
-    <span className="label">Technology Domains</span>
-  </div>
+                  <div className="stat-item">
+                    <span
+                      className="number purecounter"
+                      data-purecounter-start="0"
+                      data-purecounter-end="35"
+                      data-purecounter-duration="2"
+                    ></span>
+                    <span className="label">Technology Domains</span>
+                  </div>
 
-  <div className="stat-item">
-    <span
-      className="number purecounter"
-      data-purecounter-start="0"
-      data-purecounter-end="90"
-      data-purecounter-duration="2"
-    ></span>
-    <span className="label">Project Completion %</span>
-  </div>
-</div>
+                  <div className="stat-item">
+                    <span
+                      className="number purecounter"
+                      data-purecounter-start="0"
+                      data-purecounter-end="90"
+                      data-purecounter-duration="2"
+                    ></span>
+                    <span className="label">Project Completion %</span>
+                  </div>
+                </div>
 
 
                 <div className="hero-buttons">

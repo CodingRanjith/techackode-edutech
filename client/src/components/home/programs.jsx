@@ -48,7 +48,7 @@ const statsData = [
 
 const Programs = () => {
   return (
-    <section id="programs" className="services section">
+    <section id="programs" className="services section light-background">
       <div className="container section-title" data-aos="fade-up">
         <h2>Our Programs</h2>
         <p>
