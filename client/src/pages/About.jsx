@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import './About.css';
+
 // Images
 import aboutImg from "../assets/img/education/students-9.webp"; // Using as placeholder
 import founderImg from "../assets/founder.png"; // Founder Image
@@ -55,6 +57,38 @@ export default function About() {
                 outcome-driven, enabling learners to confidently step into
                 internships, jobs, and real projects.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="stats-section">
+        <div className="container">
+          <div className="row gy-4">
+            <div className="col-lg-3 col-md-6">
+              <div className="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <span className="stat-number">15,000+</span>
+                <span className="stat-label">Students Trained</span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6">
+              <div className="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <span className="stat-number">500+</span>
+                <span className="stat-label">Live Projects</span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6">
+              <div className="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <span className="stat-number">50+</span>
+                <span className="stat-label">Expert Mentors</span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6">
+              <div className="stat-item" data-aos="fade-up" data-aos-delay="400">
+                <span className="stat-number">100+</span>
+                <span className="stat-label">Hiring Partners</span>
+              </div>
             </div>
           </div>
         </div>

@@ -10,6 +10,8 @@ import Internship from './pages/Internship';
 import Bootcamps from './pages/Bootcamps';
 import LMS from './pages/LMS';
 import Placement from './pages/Placement';
+import Enroll from './pages/Enroll';
+
 import Contact from './pages/Contact';
 
 // AOS & PureCounter Imports
@@ -39,6 +41,7 @@ function App() {
           <Route path="/lms" element={<LMS />} />
           <Route path="/placement" element={<Placement />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/enroll" element={<Enroll />} />
         </Routes>
       </main>
       <Footer />

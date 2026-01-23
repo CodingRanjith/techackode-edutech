@@ -331,7 +331,7 @@ export default function CoursesPage() {
                   filteredCourses.map((course) => (
                     <div key={course.id} className="col-md-6 col-lg-4" data-aos="fade-up">
                       <div className="course-card-premium h-100">
-                        <Link to="#" className="course-card-link">
+                        <Link to="/enroll" state={{ courseTitle: course.title }} className="course-card-link">
                           <div className="course-image-wrapper">
                             <img src={course.image} alt={course.title} className="img-fluid" />
                             {course.bestseller && (
