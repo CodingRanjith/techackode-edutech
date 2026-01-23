@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import './Courses.css';
+
 // Import course images ( reusing existing ones )
 import img1 from "../assets/img/education/students-9.webp";
 import img2 from "../assets/img/education/campus-4.webp";
@@ -16,118 +18,147 @@ import img9 from "../assets/img/education/courses-13.webp";
 const allCourses = [
   {
     id: 1,
-    title: "LevelUP 360: Full Stack Development",
+    title: "LevelUP 360: The Complete Full Stack Development Bootcamp",
     category: "Development",
     level: "Advanced",
-    price: "Paid",
+    price: "₹3,999",
+    originalPrice: "₹12,499",
     duration: "12 Weeks",
     image: img1,
     instructor: "Sarah Johnson",
     rating: 4.8,
-    students: 420,
-    badge: "Featured"
+    ratingCount: 1240,
+    students: 15420,
+    badge: "Bestseller",
+    bestseller: true
   },
   {
     id: 2,
-    title: "Digital Marketing Mastery",
+    title: "Digital Marketing Mastery: SEO, Social Media & Ads",
     category: "Marketing",
     level: "Beginner",
-    price: "Paid",
+    price: "₹1,499",
+    originalPrice: "₹4,999",
     duration: "8 Weeks",
     image: img2,
     instructor: "Michael Chen",
-    rating: 4.7,
-    students: 350,
-    badge: "New"
+    rating: 4.6,
+    ratingCount: 850,
+    students: 8350,
+    badge: "New",
+    bestseller: false
   },
   {
     id: 3,
-    title: "React Native App Development",
+    title: "React Native: Build Real World Mobile Apps",
     category: "Development",
     level: "Intermediate",
-    price: "Paid",
+    price: "₹2,499",
+    originalPrice: "₹8,999",
     duration: "10 Weeks",
     image: img3,
     instructor: "Dr. Emily Watson",
     rating: 4.9,
-    students: 280,
-    badge: "Certificate"
+    ratingCount: 2100,
+    students: 12800,
+    badge: "Highest Rated",
+    bestseller: true
   },
   {
     id: 4,
-    title: "Data Science with Python",
+    title: "Data Science A-Z: Real-Life Data Science Exercises Included",
     category: "Data Science",
     level: "Intermediate",
-    price: "Paid",
+    price: "₹2,999",
+    originalPrice: "₹10,999",
     duration: "14 Weeks",
     image: img4,
     instructor: "David Lee",
-    rating: 4.8,
-    students: 150,
-    badge: "Popular"
+    rating: 4.7,
+    ratingCount: 950,
+    students: 6150,
+    badge: "Trending",
+    bestseller: false
   },
   {
     id: 5,
-    title: "UI/UX Design Fundamentals",
+    title: "UI/UX Design Fundamentals with Figma",
     category: "Design",
     level: "Beginner",
     price: "Free",
+    originalPrice: "₹1,999",
     duration: "4 Weeks",
     image: img5,
     instructor: "Jessica Parker",
-    rating: 4.6,
-    students: 500,
-    badge: "Free"
+    rating: 4.5,
+    ratingCount: 420,
+    students: 15500,
+    badge: "Free",
+    bestseller: false
   },
   {
     id: 6,
-    title: "Cybersecurity Bootcamp",
+    title: "The Complete Cybersecurity Bootcamp: Zero to Hero",
     category: "Cybersecurity",
     level: "Advanced",
-    price: "Paid",
+    price: "₹4,499",
+    originalPrice: "₹15,999",
     duration: "16 Weeks",
     image: img6,
     instructor: "Robert Brown",
-    rating: 4.9,
-    students: 120,
-    badge: "Certified"
+    rating: 4.8,
+    ratingCount: 620,
+    students: 4120,
+    badge: "Certified",
+    bestseller: true
   },
   {
     id: 7,
-    title: "Introduction to Cloud Computing",
+    title: "Introduction to Cloud Computing on AWS",
     category: "Development",
     level: "Beginner",
     price: "Free",
+    originalPrice: "₹999",
     duration: "6 Weeks",
     image: img7,
     instructor: "Amanda White",
-    rating: 4.5,
-    students: 200,
+    rating: 4.4,
+    ratingCount: 310,
+    students: 9200,
+    badge: null,
+    bestseller: false
   },
   {
     id: 8,
-    title: "Advanced Machine Learning",
+    title: "Advanced Machine Learning with Python",
     category: "Data Science",
     level: "Advanced",
-    price: "Paid",
+    price: "₹3,499",
+    originalPrice: "₹11,999",
     duration: "12 Weeks",
     image: img8,
     instructor: "Dr. Alan Grant",
     rating: 4.9,
-    students: 180,
-    badge: "Top Rated"
+    ratingCount: 450,
+    students: 3180,
+    badge: "Expert",
+    bestseller: false
   },
   {
     id: 9,
-    title: "Social Media Strategy",
+    title: "Social Media Strategy for Business Growth",
     category: "Marketing",
     level: "Intermediate",
-    price: "Paid",
+    price: "₹1,999",
+    originalPrice: "₹5,999",
     duration: "5 Weeks",
     image: img9,
     instructor: "Sophia Green",
     rating: 4.7,
-    students: 220,
+    ratingCount: 220,
+    students: 2220,
+    badge: null,
+    bestseller: false
   }
 ];
 
@@ -156,7 +187,11 @@ export default function CoursesPage() {
       result = result.filter(course => course.level === selectedLevel);
     }
     if (selectedPrice !== "All") {
-      result = result.filter(course => course.price === selectedPrice);
+      result = result.filter(course => {
+        if (selectedPrice === "Free") return course.price === "Free";
+        if (selectedPrice === "Paid") return course.price !== "Free";
+        return true;
+      });
     }
     if (selectedDuration !== "All") {
       result = result.filter(course => {
@@ -294,40 +329,41 @@ export default function CoursesPage() {
               <div className="row gy-4">
                 {filteredCourses.length > 0 ? (
                   filteredCourses.map((course) => (
-                    <div key={course.id} className="col-md-6 col-xl-4" data-aos="fade-up">
-                      <div className="course-card modern-card h-100">
-                        <div className="course-image">
-                          <img src={course.image} alt={course.title} className="img-fluid" />
-                          {course.badge && (
-                            <span className="badge featured">{course.badge}</span>
-                          )}
-                          <span className="course-price">{course.price === "Paid" ? "$99+" : "Free"}</span>
-                        </div>
-
-                        <div className="course-content d-flex flex-column h-100">
-                          <div className="course-meta mb-2">
-                            <span className="badge bg-light text-dark me-2">{course.category}</span>
-                            <span className="text-muted small"><i className="bi bi-bar-chart"></i> {course.level}</span>
+                    <div key={course.id} className="col-md-6 col-lg-4" data-aos="fade-up">
+                      <div className="course-card-premium h-100">
+                        <Link to="#" className="course-card-link">
+                          <div className="course-image-wrapper">
+                            <img src={course.image} alt={course.title} className="img-fluid" />
+                            {course.bestseller && (
+                              <span className="badge-bestseller">Bestseller</span>
+                            )}
+                            {!course.bestseller && course.badge && (
+                              <span className="badge-new">{course.badge}</span>
+                            )}
                           </div>
 
-                          <h3 className="mb-2"><Link to="#">{course.title}</Link></h3>
-                          <p className="text-muted small mb-3">
-                            <i className="bi bi-clock me-1"></i> {course.duration} |
-                            <i className="bi bi-people ms-2 me-1"></i> {course.students} Learners
-                          </p>
+                          <div className="course-body">
+                            <h3 className="course-title">{course.title}</h3>
+                            <p className="course-instructor">{course.instructor}</p>
 
-                          <div className="d-flex justify-content-between align-items-center mt-auto">
-                            <div className="instructor d-flex align-items-center">
-                              <i className="bi bi-person-circle fs-5 me-2 text-primary"></i>
-                              <span className="small fw-bold">{course.instructor}</span>
+                            <div className="course-rating">
+                              <span className="rating-number">{course.rating}</span>
+                              <div className="stars">
+                                {[...Array(5)].map((_, i) => (
+                                  <i key={i} className={`bi ${i < Math.floor(course.rating) ? 'bi-star-fill' : (i < course.rating ? 'bi-star-half' : 'bi-star')}`}></i>
+                                ))}
+                              </div>
+                              <span className="rating-count">({course.ratingCount})</span>
                             </div>
-                            <div className="rating text-warning small">
-                              <i className="bi bi-star-fill"></i> {course.rating}
+
+                            <div className="course-price-row">
+                              <span className="current-price">{course.price}</span>
+                              {course.price !== 'Free' && (
+                                <span className="original-price">{course.originalPrice}</span>
+                              )}
                             </div>
                           </div>
-
-                          <Link to="/enroll" className="btn btn-primary btn-sm w-100 mt-3 rounded-pill">View Details</Link>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   ))

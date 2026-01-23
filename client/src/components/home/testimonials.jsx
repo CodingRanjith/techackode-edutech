@@ -135,14 +135,11 @@ const Testimonials = () => {
 
                     {/* AUTHOR */}
                     <div className="author-info">
-                      <img
-                        src={t.img}
-                        alt={t.authorName}
-                        className="author-img"
-                      />
+                      <div className="author-icon">
+                        <i className="bi bi-person-circle" style={{ fontSize: "2.5rem", color: "#6c757d", marginRight: "15px" }}></i>
+                      </div>
                       <div className="author-details">
-                        <h5>{t.authorName}</h5>
-                        <span>{t.authorRole}</span>
+                        <h5 style={{ marginBottom: "0" }}>{t.authorName}</h5>
                       </div>
                     </div>
                   </div>

@@ -1,89 +1,89 @@
-import React, { useState } from 'react';
-import './Courses.css'; // Make sure CSS matches card style
+import ThreeDMap from '../components/ThreeDMap';
 
-export default function Courses() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
-  // Course Data
-  const coursesData = [
-    { id: 1, title: 'LevelUP 360', category: 'web', price: '₹20,000', instructor: 'Sanjai Prabu', students: 450, image: '/assets/img/education/levelup360.webp' },
-    { id: 2, title: 'Digital Marketing', category: 'marketing', price: '₹15,000', instructor: 'Shakthi Meena', students: 380, image: '/assets/img/education/digital-marketing.webp' },
-    { id: 3, title: 'React Native (App Development)', category: 'mobile', price: '₹18,000', instructor: 'Gayathri', students: 290, image: '/assets/img/education/react-native.webp' },
-    { id: 4, title: 'AI & Machine Learning', category: 'ai', price: '₹25,000', instructor: 'Soniya', students: 340, image: '/assets/img/education/ai-ml.webp' },
-    { id: 5, title: 'Flutter App Development', category: 'mobile', price: '₹18,000', instructor: 'Gayathri', students: 290, image: '/assets/img/education/flutter.webp' },
-    { id: 6, title: 'UI/UX Design with Figma', category: 'design', price: '₹10,000', instructor: 'Sanjay Kumar', students: 520, image: '/assets/img/education/ui-ux.webp' },
-    { id: 7, title: 'Python for Beginners', category: 'backend', price: '₹12,000', instructor: 'Lufthar Nagar', students: 620, image: '/assets/img/education/python.webp' },
-    { id: 8, title: 'Java Advanced', category: 'backend', price: '₹16,000', instructor: 'Banu', students: 280, image: '/assets/img/education/java.webp' },
-  ];
-
-  // Categories
-  const categories = [
-    { id: 'all', label: 'All Courses' },
-    { id: 'web', label: 'Web Development' },
-    { id: 'mobile', label: 'Mobile Apps' },
-    { id: 'backend', label: 'Backend' },
-    { id: 'frontend', label: 'Frontend' },
-    { id: 'ai', label: 'AI/ML' },
-    { id: 'marketing', label: 'Marketing' },
-    { id: 'design', label: 'Design' },
-  ];
-
-  const filteredCourses = selectedCategory === 'all'
-    ? coursesData
-    : coursesData.filter(course => course.category === selectedCategory);
-
+const Contact = () => {
   return (
-    <div className="courses-page">
-      {/* Page Header */}
-      <section className="page-header">
-        <div className="container">
-          <h1>Our Courses</h1>
-          <p>Learn from industry experts with hands-on projects and real-time internships</p>
+    <main className="main">
+      {/* Page Title */}
+      <div className="page-title" data-aos="fade">
+        <div className="container d-lg-flex justify-content-between align-items-center">
+          <h1 className="mb-2 mb-lg-0">Contact Us</h1>
+          <nav className="breadcrumbs">
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li className="current">Contact</li>
+            </ol>
+          </nav>
         </div>
-      </section>
+      </div>
 
-      {/* Courses Section */}
-      <section className="courses-section container">
-        {/* Category Filters */}
-        <div className="filter-buttons" data-aos="fade-up">
-          {categories.map(cat => (
-            <button
-              key={cat.id}
-              className={`filter-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(cat.id)}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+      {/* Contact Section */}
+      <section id="contact" className="contact section">
+        <div className="container" data-aos="fade-up" data-aos-delay="100">
 
-        {/* Courses Grid */}
-        <div className="courses-grid" data-aos="fade-up" data-aos-delay="100">
-          {filteredCourses.map(course => (
-            <div key={course.id} className="course-card">
-              <div className="course-image">
-                <img src={course.image} alt={course.title} className="img-fluid" />
-                <span className="course-price">{course.price}</span>
+          {/* 3D Map */}
+          <div className="mb-4" data-aos="fade-up" data-aos-delay="200">
+            <ThreeDMap />
+          </div>
+
+          <div className="row gy-4">
+            {/* Contact Info */}
+            <div className="col-lg-4">
+              <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i className="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>Techackode Edutech Pvt. Ltd.<br />Virudhunagar, Tamil Nadu, India</p>
+                </div>
               </div>
-              <div className="course-content">
-                <h3>{course.title}</h3>
-                <p className="instructor"><strong>Instructor:</strong> {course.instructor}</p>
-                <p className="students">{course.students} students enrolled</p>
-                <button className="btn-primary">View Course</button>
+
+              <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i className="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Us</h3>
+                  <p>+91 98765 43210</p>
+                </div>
+              </div>
+
+              <div className="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+                <i className="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email Us</h3>
+                  <p>info@techackode.com</p>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* More Courses / Pagination */}
-        {filteredCourses.length < coursesData.length && (
-          <div className="more-courses text-center" data-aos="fade-up" data-aos-delay="200">
-            <button className="btn-more" onClick={() => setSelectedCategory('all')}>
-              Show All Courses
-            </button>
+            {/* Contact Form */}
+            <div className="col-lg-8">
+              <form className="php-email-form" data-aos="fade-up" data-aos-delay="200" onSubmit={(e) => e.preventDefault()}>
+                <div className="row gy-4">
+                  <div className="col-md-6">
+                    <input type="text" name="name" className="form-control" placeholder="Your Name" required />
+                  </div>
+
+                  <div className="col-md-6 ">
+                    <input type="email" className="form-control" name="email" placeholder="Your Email" required />
+                  </div>
+
+                  <div className="col-md-12">
+                    <input type="text" className="form-control" name="subject" placeholder="Subject" required />
+                  </div>
+
+                  <div className="col-md-12">
+                    <textarea className="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  </div>
+
+                  <div className="col-md-12 text-center">
+                    <button type="submit">Send Message</button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-        )}
+        </div>
       </section>
-    </div>
+    </main>
   );
-}
+};
+
+export default Contact;
