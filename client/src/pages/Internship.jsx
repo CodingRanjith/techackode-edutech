@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import './Internship.css'
 
 export default function Internship() {
   const [formData, setFormData] = useState({ name: '', email: '', domain: '' })
@@ -75,15 +75,15 @@ export default function Internship() {
           <div className="signup-form">
             <h3>Apply Now</h3>
             <form>
-              <input
-                type="text"
-                placeholder="Full Name"
-                required
+              <input 
+                type="text" 
+                placeholder="Full Name" 
+                required 
               />
-              <input
-                type="email"
-                placeholder="Email Address"
-                required
+              <input 
+                type="email" 
+                placeholder="Email Address" 
+                required 
               />
               <select required>
                 <option value="">Select Domain</option>
@@ -91,13 +91,13 @@ export default function Internship() {
                   <option key={idx} value={domain}>{domain}</option>
                 ))}
               </select>
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                required
+              <input 
+                type="tel" 
+                placeholder="Phone Number" 
+                required 
               />
-              <textarea
-                placeholder="Why are you interested in this internship?"
+              <textarea 
+                placeholder="Why are you interested in this internship?" 
                 rows="4"
               ></textarea>
               <button type="submit" className="btn-primary btn-lg">Enroll Now - ₹1,000</button>

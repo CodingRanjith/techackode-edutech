@@ -1,0 +1,238 @@
+/* Courses Page Styles similar to Udemy */
+
+/* Page Header */
+.page-header {
+  background: var(--heading-color);
+  /* Navy blueish */
+  color: white;
+  padding: 40px 0;
+}
+
+.page-header h1 {
+  color: white;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.page-header .breadcrumbs {
+  margin-top: 10px;
+}
+
+.page-header .breadcrumbs a {
+  color: var(--accent-color);
+}
+
+.page-header .breadcrumbs .current {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Filter Section */
+.course-filters h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--heading-color);
+}
+
+.course-filters .filter-group {
+  border-bottom: 1px solid #d1d7dc;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.course-filters .filter-group:last-of-type {
+  border-bottom: none;
+}
+
+.course-filters .form-check-label {
+  font-size: 14px;
+  color: var(--default-color);
+  cursor: pointer;
+}
+
+.course-filters .form-check-input:checked {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* Premium Course Card */
+.course-card-premium {
+  background: #fff;
+  border: 1px solid #d1d7dc;
+  /* Subtle border */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.course-card-premium:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Pop effect */
+}
+
+/* Link Wrapper */
+.course-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.course-card-link:hover {
+  color: inherit;
+}
+
+/* Image Wrapper */
+.course-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  /* 16:9 Aspect Ratio */
+  overflow: hidden;
+  background: #eee;
+}
+
+.course-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Badges */
+.badge-bestseller {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  background-color: #eceb98;
+  /* Light yellow */
+  color: #3d3c0a;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.badge-bestseller::after {
+  content: "";
+  /* Little arrow tip if we wanted, but simple rectangle is standard */
+}
+
+.badge-new {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  background-color: #3d924e;
+  /* Green */
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+/* Course Body */
+.course-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Title */
+.course-title {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--heading-color);
+  margin-bottom: 4px;
+
+  /* Truncate to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 44px;
+  /* Space for 2 lines */
+}
+
+/* Instructor */
+.course-instructor {
+  font-size: 12px;
+  color: #6a6f73;
+  /* Muted text */
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Rating Row */
+.course-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.rating-number {
+  font-weight: 700;
+  color: #b4690e;
+  /* Brown-orange */
+  font-size: 14px;
+}
+
+.stars {
+  font-size: 12px;
+  color: #e59819;
+  /* Star yellow */
+  display: flex;
+}
+
+.rating-count {
+  color: #6a6f73;
+  font-size: 12px;
+}
+
+/* Price Row */
+.course-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  /* Push to bottom */
+}
+
+.current-price {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--heading-color);
+}
+
+.original-price {
+  font-size: 14px;
+  color: #6a6f73;
+  text-decoration: line-through;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .course-card-premium {
+    flex-direction: row;
+    /* Horizontal card on mobile? Or stack? Standard is stack on very small, but list on tablet. Stick to stack for simplicity */
+  }
+}
