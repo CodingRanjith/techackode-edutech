@@ -1,5 +1,5 @@
 import React from 'react'
-import './LMS.css'
+
 
 export default function LMS() {
   const features = [

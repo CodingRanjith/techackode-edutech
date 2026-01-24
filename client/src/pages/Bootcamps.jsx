@@ -1,5 +1,5 @@
 import React from 'react'
-import './Bootcamps.css'
+
 
 export default function Bootcamps() {
   const bootcamps = [

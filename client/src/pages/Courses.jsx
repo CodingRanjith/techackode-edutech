@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import './Courses.css';
+
 
 // Import course images ( reusing existing ones )
 import img1 from "../assets/img/education/students-9.webp";
