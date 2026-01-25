@@ -3,15 +3,14 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import './Enroll.css';
 
 const courseList = [
-    "LevelUP 360: The Complete Full Stack Development Bootcamp",
-    "Digital Marketing Mastery: SEO, Social Media & Ads",
-    "React Native: Build Real World Mobile Apps",
-    "Data Science A-Z: Real-Life Data Science Exercises Included",
-    "UI/UX Design Fundamentals with Figma",
-    "The Complete Cybersecurity Bootcamp: Zero to Hero",
-    "Introduction to Cloud Computing on AWS",
-    "Advanced Machine Learning with Python",
-    "Social Media Strategy for Business Growth"
+    "MERN Stack Mastery: Full Stack Web Development",
+    "Python for Data Science & AI/ML",
+    "Cybersecurity & Ethical Hacking Bootcamp",
+    "Java Full Stack Development: Core to Cloud",
+    "React Native: Global App Development Sprint",
+    "Cloud Computing with AWS Essentials",
+    "4-Week Online Internship (Multiple Domains)",
+    "Custom Integrated Learning Path"
 ];
 
 export default function Enroll() {
