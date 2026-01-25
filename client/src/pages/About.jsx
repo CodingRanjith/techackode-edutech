@@ -1,106 +1,156 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 import './About.css';
 
 // Images
-import aboutImg from "../assets/img/education/students-9.webp"; // Using as placeholder
-import founderImg from "../assets/founder.png"; // Founder Image
+import aboutImg from "../assets/img/education/students-9.webp";
+import founderImg from "../assets/founder.png";
+
+const stats = [
+  { number: "15,000+", label: "Learners Impacted", icon: "bi-people" },
+  { number: "500+", label: "Industry Projects", icon: "bi-briefcase" },
+  { number: "50+", label: "Expert Mentors", icon: "bi-person-badge" },
+  { number: "100+", label: "Hiring Partners", icon: "bi-building" },
+];
+
+const values = [
+  {
+    title: "Practical First",
+    desc: "We prioritize hands-on projects over theoretical jargon to ensure real-world readiness.",
+    icon: "bi-cpu",
+  },
+  {
+    title: "Accessibility",
+    desc: "Quality tech education shouldn't be a luxury. We keep our programs affordable for everyone.",
+    icon: "bi-cash-stack",
+  },
+  {
+    title: "Community Driven",
+    desc: "Join a network of thousands of learners and professionals supporting each other.",
+    icon: "bi-hub",
+  },
+  {
+    title: "Future Ready",
+    desc: "Our curriculum is constantly updated to keep pace with the rapidly evolving IT landscape.",
+    icon: "bi-rocket-takeoff",
+  }
+];
 
 export default function About() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
   return (
     <div className="about-page">
-      {/* Page Title */}
-      <div className="page-title">
-        <div className="container d-lg-flex justify-content-between align-items-center">
-          <h1 className="mb-2 mb-lg-0">About Us</h1>
-          <nav className="breadcrumbs">
-            <ol>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li className="current">About</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-
-      {/* About Overview Section */}
-      <section id="about-overview" className="section about-details">
+      {/* Premium Hero Section */}
+      <section className="about-hero">
         <div className="container">
-          <div className="row gy-4 align-items-center">
+          <div className="hero-grid">
+            <div className="hero-text" data-aos="fade-right">
+              <nav className="about-breadcrumbs">
+                <Link to="/">Home</Link>
+                <i className="bi bi-chevron-right"></i>
+                <span className="current">About Us</span>
+              </nav>
+              <h1>We Are <span>Techackode</span></h1>
+              <p className="hero-lead">
+                Educating the next generation of tech leaders through practical,
+                industry-aligned training programs.
+              </p>
+              <div className="hero-badges">
+                <span className="h-badge"><i className="bi bi-shield-check"></i> ISO Certified</span>
+                <span className="h-badge"><i className="bi bi-star-fill"></i> 4.9/5 Rating</span>
+              </div>
+            </div>
+            <div className="hero-image-wrapper" data-aos="fade-left">
+              <div className="image-stack">
+                <img src={aboutImg} alt="Students" className="main-img" />
+                <div className="img-overlay-card">
+                  <span className="count">10+</span>
+                  <span className="txt">Years of Excellence</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="hero-waves">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+        </div>
+      </section>
+
+      {/* Stats Section with Glassmorphism */}
+      <section className="about-stats">
+        <div className="container">
+          <div className="stats-grid">
+            {stats.map((stat, idx) => (
+              <div className="stat-card" key={idx} data-aos="zoom-in" data-aos-delay={idx * 100}>
+                <div className="stat-icon"><i className={`bi ${stat.icon}`}></i></div>
+                <div className="stat-info">
+                  <h3>{stat.number}</h3>
+                  <p>{stat.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story Section */}
+      <section className="our-story section-padding">
+        <div className="container">
+          <div className="row align-items-center">
             <div className="col-lg-6" data-aos="fade-right">
-              <img src={aboutImg} className="img-fluid" alt="About Techackode" />
+              <div className="story-content">
+                <span className="section-subtitle">Since 2025</span>
+                <h2 className="section-title">Bridging the Gap Between <span>Academia & Industry</span></h2>
+                <p>
+                  Techackode Edutech Pvt. Ltd. was founded with a singular vision: to ensure that
+                  every student in India has access to the practical skills that the IT industry
+                  actually demands.
+                </p>
+                <div className="story-features">
+                  <div className="s-feature">
+                    <i className="bi bi-patch-check-fill"></i>
+                    <div>
+                      <h4>Real-Time Learning</h4>
+                      <p>Learn using the same tools and workflows used by top tech companies.</p>
+                    </div>
+                  </div>
+                  <div className="s-feature">
+                    <i className="bi bi-patch-check-fill"></i>
+                    <div>
+                      <h4>Outcome Driven</h4>
+                      <p>Success for us is measured by your careers—internships, jobs, and projects.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-lg-6" data-aos="fade-left">
-              <span className="subtitle text-uppercase text-muted fw-bold mb-2 d-block">
-                Who We Are
-              </span>
-              <h2 className="mb-3 fw-bold display-6">
-                Real-Time Learning for Real Careers
-              </h2>
-              <p className="lead mb-4 text-secondary">
-                Techackode Edutech Pvt. Ltd. is the education and training division
-                of Techackode Pvt. Ltd., focused on delivering practical,
-                industry-aligned technology education for students and working
-                professionals across India.
-              </p>
-              <p className="mb-4">
-                Founded in 2025, Techackode Edutech was created to bridge the
-                growing gap between academic learning and real-world IT industry
-                requirements. Our programs emphasize hands-on projects, real-time
-                tools, and mentor-led learning to help learners build job-ready
-                skills.
-              </p>
-              <p>
-                We believe education should be affordable, practical, and
-                outcome-driven, enabling learners to confidently step into
-                internships, jobs, and real projects.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="stats-section">
-        <div className="container">
-          <div className="row gy-4">
-            <div className="col-lg-3 col-md-6">
-              <div className="stat-item" data-aos="fade-up" data-aos-delay="100">
-                <span className="stat-number">15,000+</span>
-                <span className="stat-label">Students Trained</span>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
-              <div className="stat-item" data-aos="fade-up" data-aos-delay="200">
-                <span className="stat-number">500+</span>
-                <span className="stat-label">Live Projects</span>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
-              <div className="stat-item" data-aos="fade-up" data-aos-delay="300">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Expert Mentors</span>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6">
-              <div className="stat-item" data-aos="fade-up" data-aos-delay="400">
-                <span className="stat-number">100+</span>
-                <span className="stat-label">Hiring Partners</span>
+              <div className="video-placeholder">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000" alt="Team" />
+                <div className="play-btn"><i className="bi bi-play-fill"></i></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Vision & Mission Section */}
-      <section className="section light-background">
+      {/* Mission & Vision Section (Dark) */}
+      <section className="mission-vision dark-bg section-padding">
         <div className="container">
-          <div className="row gy-4">
-            <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <div className="mission-card">
-                <i className="bi bi-bullseye"></i>
+          <div className="row g-4">
+            <div className="col-md-6" data-aos="fade-up">
+              <div className="mv-card mission">
+                <div className="mv-icon"><i className="bi bi-bullseye"></i></div>
                 <h3>Our Mission</h3>
                 <p>
                   To make high-quality technology education accessible, affordable,
@@ -109,9 +159,9 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-              <div className="vision-card">
-                <i className="bi bi-eye"></i>
+            <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
+              <div className="mv-card vision">
+                <div className="mv-icon"><i className="bi bi-eye"></i></div>
                 <h3>Our Vision</h3>
                 <p>
                   To empower students and professionals with hands-on learning and
@@ -124,239 +174,134 @@ export default function About() {
         </div>
       </section>
 
-      {/* Founder Section */}
-      <section className="section">
+      {/* Core Values Section */}
+      <section className="core-values section-padding">
         <div className="container">
-          <div className="founder-section">
-            <div className="row align-items-center gy-4">
-              <div className="col-lg-4 text-center" data-aos="zoom-in">
-                <img
-                  src={founderImg}
-                  alt="C. Ranjith Kumar"
-                  className="founder-img"
-                />
-              </div>
-              <div className="col-lg-8 founder-content" data-aos="fade-up">
-                <span className="subtitle">Founder & Leadership</span>
-                <h3>C. Ranjith Kumar</h3>
-                <h4>Founder & Director – Techackode Pvt. Ltd.</h4>
-                <p className="mt-3">
-                  A technology entrepreneur focused on building practical,
-                  industry-driven learning ecosystems. With a strong emphasis on
-                  real-time projects and skill-based education, he founded
-                  Techackode Edutech to bridge the gap between academic learning and
-                  real-world IT requirements.
-                </p>
-                <div className="mt-4">
-                  <a
-                    href="https://www.linkedin.com/in/coding-ranjith/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn btn-primary btn-sm rounded-pill px-4"
-                  >
-                    <i className="bi bi-linkedin me-2"></i> Connect on LinkedIn
-                  </a>
-                </div>
-              </div>
-            </div>
+          <div className="section-header text-center mb-5" data-aos="fade-up">
+            <span className="section-subtitle">Core Values</span>
+            <h2 className="section-title">What Defines <span>Us</span></h2>
           </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us - Features */}
-      <section className="section light-background">
-        <div className="container section-title" data-aos="fade-up">
-          <h2>What Makes Us Different</h2>
-          <p>We focus on outcome-driven education that delivers results.</p>
-        </div>
-        <div className="container">
-          <div className="row gy-4">
-            {[
-              {
-                title: "Project-Based Learning",
-                desc: "Instead of theory-only teaching, we focus on live projects.",
-                icon: "bi-laptop",
-              },
-              {
-                title: "Affordable Pricing",
-                desc: "High-quality education accessible to students from all backgrounds.",
-                icon: "bi-cash-coin",
-              },
-              {
-                title: "Industry Mentors",
-                desc: "Learn directly from experienced professionals and experts.",
-                icon: "bi-person-badge",
-              },
-              {
-                title: "Live Internships",
-                desc: "Gain real-time experience with internships and client projects.",
-                icon: "bi-briefcase",
-              },
-              {
-                title: "Placement Guidance",
-                desc: "Career-focused courses with dedicated placement support.",
-                icon: "bi-graph-up-arrow",
-              },
-              {
-                title: "Hybrid Learning",
-                desc: "Flexible online and offline learning modes to suit your needs.",
-                icon: "bi-wifi",
-              },
-            ].map((feature, index) => (
-              <div
-                className="col-lg-4 col-md-6"
-                key={index}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-              >
-                <div className="service-card h-100">
-                  <div className="icon-wrapper">
-                    <i className={`bi ${feature.icon}`}></i>
-                  </div>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.desc}</p>
-                </div>
+          <div className="values-grid">
+            {values.map((val, idx) => (
+              <div className="value-card" key={idx} data-aos="fade-up" data-aos-delay={idx * 100}>
+                <div className="v-icon-box"><i className={`bi ${val.icon}`}></i></div>
+                <h4>{val.title}</h4>
+                <p>{val.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Leaning Models */}
-      <section className="section">
-        <div className="container section-title" data-aos="fade-up">
-          <h2>Our Learning Models</h2>
-          <p>Structured programs designed for every stage of your career.</p>
-        </div>
+      {/* Learning Models Section */}
+      <section className="learning-models section-padding light-bg">
         <div className="container">
-          <div className="row gy-4">
-            <div className="col-lg-6 col-md-6" data-aos="fade-up">
-              <div className="learning-model-card">
+          <div className="section-header text-center mb-5" data-aos="fade-up">
+            <span className="section-subtitle">Our Models</span>
+            <h2 className="section-title">How You <span>Learn</span></h2>
+          </div>
+          <div className="models-grid">
+            <div className="model-card-modern" data-aos="fade-up">
+              <div className="model-head">
+                <i className="bi bi-laptop"></i>
                 <h4>Online Internships</h4>
-                <p>
-                  Designed for students and freshers who want real project
-                  experience instead of certificate-only internships.
-                </p>
-                <ul className="model-list">
-                  <li><i className="bi bi-clock"></i> Duration: 4 Weeks</li>
-                  <li><i className="bi bi-code-slash"></i> 20+ Technology Domains</li>
-                  <li><i className="bi bi-laptop"></i> Live Project-Based Learning</li>
-                  <li><i className="bi bi-patch-check"></i> Verified Internship Certificate</li>
-                </ul>
               </div>
+              <p>Real project experience for students and freshers.</p>
+              <ul className="model-features">
+                <li><i className="bi bi-check2"></i> 4 Weeks Duration</li>
+                <li><i className="bi bi-check2"></i> 20+ Tech Domains</li>
+                <li><i className="bi bi-check2"></i> Live Mentorship</li>
+              </ul>
             </div>
-            <div className="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div className="learning-model-card">
-                <h4>Skill-Based Courses</h4>
-                <p>
-                  Instructor-led courses designed to develop job-ready technical
-                  skills through structured learning and guided practice.
-                </p>
-                <ul className="model-list">
-                  <li><i className="bi bi-display"></i> Web & Mobile Development</li>
-                  <li><i className="bi bi-robot"></i> AI, ML & Data Science</li>
-                  <li><i className="bi bi-shield-lock"></i> Cybersecurity & Ethical Hacking</li>
-                  <li><i className="bi bi-pencil-square"></i> UI/UX Design & Marketing</li>
-                </ul>
+            <div className="model-card-modern" data-aos="fade-up" data-aos-delay="100">
+              <div className="model-head">
+                <i className="bi bi-display"></i>
+                <h4>Skill Courses</h4>
               </div>
+              <p>Instructor-led training for job-ready technical skills.</p>
+              <ul className="model-features">
+                <li><i className="bi bi-check2"></i> MERN, Data Science & AI</li>
+                <li><i className="bi bi-check2"></i> Cyber Security</li>
+                <li><i className="bi bi-check2"></i> UI/UX Design</li>
+              </ul>
             </div>
-            <div className="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
-              <div className="learning-model-card">
-                <h4>Bootcamps & Workshops</h4>
-                <p>
-                  Short-term bootcamps and workshops on trending technologies to
-                  help learners explore new skills quickly.
-                </p>
-                <ul className="model-list">
-                  <li><i className="bi bi-calendar-event"></i> 1-Day or Weekend Programs</li>
-                  <li><i className="bi bi-bar-chart"></i> Beginner to Advanced Topics</li>
-                  <li><i className="bi bi-wallet2"></i> Affordable Entry-Level Pricing</li>
-                  <li><i className="bi bi-award"></i> Certification on Completion</li>
-                </ul>
+            <div className="model-card-modern" data-aos="fade-up" data-aos-delay="200">
+              <div className="model-head">
+                <i className="bi bi-lightning"></i>
+                <h4>Bootcamps</h4>
               </div>
+              <p>Short-term intensive workshops on trending tech.</p>
+              <ul className="model-features">
+                <li><i className="bi bi-check2"></i> 1-3 Day Sessions</li>
+                <li><i className="bi bi-check2"></i> Hands-on Sprints</li>
+                <li><i className="bi bi-check2"></i> Affordable Pricing</li>
+              </ul>
             </div>
-            <div className="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div className="learning-model-card">
+            <div className="model-card-modern" data-aos="fade-up" data-aos-delay="300">
+              <div className="model-head">
+                <i className="bi bi-mortarboard"></i>
                 <h4>LMS Platform</h4>
-                <p>
-                  Our digital learning platform designed for self-paced and
-                  structured online education.
-                </p>
-                <ul className="model-list">
-                  <li><i className="bi bi-play-circle"></i> Recorded Video Courses</li>
-                  <li><i className="bi bi-speedometer2"></i> Student Dashboards & Tracking</li>
-                  <li><i className="bi bi-mortarboard"></i> Digital Certificates</li>
-                  <li><i className="bi bi-phone"></i> Accessible Anytime, Anywhere</li>
-                </ul>
+              </div>
+              <p>Self-paced learning on our digital platform.</p>
+              <ul className="model-features">
+                <li><i className="bi bi-check2"></i> Recorded Content</li>
+                <li><i className="bi bi-check2"></i> Student Dashboard</li>
+                <li><i className="bi bi-check2"></i> Verified Certificates</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Section */}
+      <section className="leadership section-padding light-bg">
+        <div className="container">
+          <div className="founder-wrapper" data-aos="zoom-in">
+            <div className="founder-card-inner">
+              <div className="founder-img-box">
+                <img src={founderImg} alt="C. Ranjith Kumar" />
+                <div className="social-links-founder">
+                  <a href="https://www.linkedin.com/in/coding-ranjith/" target="_blank" rel="noreferrer"><i className="bi bi-linkedin"></i></a>
+                  <a href="#"><i className="bi bi-twitter-x"></i></a>
+                </div>
+              </div>
+              <div className="founder-text-box">
+                <span className="f-subtitle">Leadership</span>
+                <h3>C. Ranjith Kumar</h3>
+                <p className="f-title">Founder & Director – Techackode Pvt. Ltd.</p>
+                <div className="quote-box">
+                  <i className="bi bi-quote"></i>
+                  <p>
+                    "We didn't just want to create another course platform. We wanted to create
+                    a roadmap for students to transition into the industry with confidence
+                    and competence."
+                  </p>
+                </div>
+                <div className="f-bio">
+                  <p>
+                    A technology entrepreneur focused on building practical,
+                    industry-driven learning ecosystems. With a strong emphasis on
+                    real-time projects and skill-based education, he founded
+                    Techackode Edutech to bridge the gap.
+                  </p>
+                </div>
+                <Link to="/contact" className="btn-founder">Schedule a Mentorship Session</Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Who Can Join & Commitment */}
-      <section className="section light-background">
+      {/* Final CTA Section */}
+      <section className="about-cta section-padding">
         <div className="container">
-          <div className="row gy-4">
-            <div className="col-lg-6" data-aos="fade-right">
-              <h3>🌍 Who Can Join?</h3>
-              <p className="mb-4">
-                Our programs are open to anyone with a passion for learning and technology.
-              </p>
-              <ul className="list-unstyled">
-                {[
-                  "College Students",
-                  "Fresh Graduates",
-                  "Working Professionals",
-                  "Career Switchers",
-                  "Freelancers and Entrepreneurs",
-                ].map((item, idx) => (
-                  <li key={idx} className="mb-2 d-flex align-items-center">
-                    <i className="bi bi-check-circle-fill text-primary me-2"></i>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="col-lg-6" data-aos="fade-left">
-              <h3>📈 Our Commitment</h3>
-              <p className="mb-4">At Techackode Edutech, we are committed to:</p>
-              <ul className="list-unstyled">
-                {[
-                  "Delivering outcome-focused education",
-                  "Maintaining transparency and trust",
-                  "Continuously updating our curriculum",
-                  "Supporting learners beyond course completion",
-                ].map((item, idx) => (
-                  <li key={idx} className="mb-2 d-flex align-items-center">
-                    <i className="bi bi-heart-fill text-danger me-2"></i>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Career Support CTA */}
-      <section className="section">
-        <div className="container">
-          <div className="cta-section">
-            <div className="cta-content">
-              <h3>Career & Placement Support</h3>
-              <p>
-                We provide structured career support to help learners transition
-                into the IT industry, including resume building, mock interviews,
-                and hiring connections.
-              </p>
-              <div className="cta-buttons">
-                <Link to="/contact" className="btn-cta-primary">
-                  Get in Touch
-                </Link>
-                <Link to="/courses" className="btn-cta-secondary">
-                  Browse Courses
-                </Link>
+          <div className="cta-wrapper shadow-lg" data-aos="flip-up">
+            <div className="cta-glass-content">
+              <h2>Join Our Growing Community</h2>
+              <p>Take the first step towards a rewarding career in technology today.</p>
+              <div className="cta-action-btns">
+                <Link to="/courses" className="btn-cta-main">Explore All Courses</Link>
+                <Link to="/contact" className="btn-cta-outline">Contact Us</Link>
               </div>
             </div>
           </div>

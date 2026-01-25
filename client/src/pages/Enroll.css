@@ -1,100 +1,221 @@
-/* Enroll Page Specifics */
+/* Enroll Page Premium Checkout Style */
+
 .enroll-page {
-    background: #f8fafc;
-    min-height: 80vh;
+    background-color: #f8fafc;
+    min-height: 100vh;
 }
 
-.enroll-section {
-    padding: 60px 0;
-}
-
-.enroll-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    /* Premium shadow */
+/* --- Banner --- */
+.enroll-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    padding: 80px 0 120px;
+    position: relative;
     overflow: hidden;
-    max-width: 800px;
-    margin: 0 auto;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.enroll-header {
-    background: linear-gradient(135deg, var(--heading-color) 0%, #1a3c5e 100%);
     color: white;
-    padding: 30px;
     text-align: center;
 }
 
-.enroll-header h2 {
-    color: white;
-    font-weight: 700;
-    margin-bottom: 8px;
+.banner-content {
+    position: relative;
+    z-index: 5;
 }
 
-.enroll-header p {
-    color: rgba(255, 255, 255, 0.8);
+.enroll-banner h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #60efff, #00ff87);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.enroll-banner p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- Main Layout --- */
+.checkout-container {
+    margin-top: -60px;
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* --- Summary Sidebar --- */
+.summary-card {
+    background: white;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: sticky;
+    top: 100px;
+}
+
+.summary-card h3 {
+    font-weight: 800;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.course-preview-box {
+    background: #f1f5f9;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.course-preview-box h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.course-preview-box p {
+    font-size: 0.9rem;
+    color: #64748b;
     margin: 0;
 }
 
-.enroll-body {
-    padding: 40px;
+.feature-list-simple {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
 }
 
-.enroll-body .form-label {
-    font-weight: 600;
+.feature-list-simple li {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.feature-list-simple i {
+    color: #22c55e;
+    font-size: 1.1rem;
+}
+
+.trust-badge-checkout {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 25px;
+    text-align: center;
+}
+
+.trust-badge-checkout p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 15px;
+}
+
+.secure-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1.5rem;
+    color: #cbd5e1;
+}
+
+/* --- Form Card --- */
+.enroll-form-card {
+    background: white;
+    border-radius: 24px;
+    padding: 45px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.enroll-form-card h2 {
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 35px;
+}
+
+.form-group-premium {
+    margin-bottom: 25px;
+}
+
+.form-group-premium label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
     color: var(--heading-color);
-    margin-bottom: 8px;
+    font-size: 0.95rem;
 }
 
-.enroll-body .form-control,
-.enroll-body .form-select {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #dce0e4;
+.form-group-premium input,
+.form-group-premium select,
+.form-group-premium textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
     transition: all 0.3s;
 }
 
-.enroll-body .form-control:focus,
-.enroll-body .form-select:focus {
+.form-group-premium input:focus,
+.form-group-premium select:focus,
+.form-group-premium textarea:focus {
+    background: white;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 4px rgba(19, 95, 162, 0.1);
+    box-shadow: 0 10px 20px rgba(19, 95, 162, 0.05);
+    outline: none;
 }
 
-.btn-enroll-submit {
-    background: var(--accent-color);
-    color: white;
-    padding: 14px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
+.btn-submit-premium {
     width: 100%;
-    margin-top: 20px;
-    transition: 0.3s;
-}
-
-.btn-enroll-submit:hover {
-    background: color-mix(in srgb, var(--accent-color), black 10%);
-    background: #0f4c82;
-    /* slightly darker fallback */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(19, 95, 162, 0.3);
-}
-
-.payment-methods {
+    padding: 18px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #0d4a7d 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(19, 95, 162, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
     display: flex;
-    gap: 15px;
+    align-items: center;
     justify-content: center;
+    gap: 10px;
     margin-top: 20px;
-    opacity: 0.7;
 }
 
-.payment-methods i {
-    font-size: 24px;
+.btn-submit-premium:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(19, 95, 162, 0.4);
 }
 
-@media (max-width: 768px) {
-    .enroll-body {
-        padding: 24px;
+/* Responsive */
+@media (max-width: 991px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+        position: static;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .enroll-form-card {
+        padding: 30px 20px;
+    }
+
+    .enroll-banner h1 {
+        font-size: 2rem;
     }
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import './Enroll.css';
 
-
 const courseList = [
     "LevelUP 360: The Complete Full Stack Development Bootcamp",
     "Digital Marketing Mastery: SEO, Social Media & Ads",
@@ -18,7 +17,6 @@ const courseList = [
 export default function Enroll() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [selectedCourse, setSelectedCourse] = useState('');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -27,10 +25,8 @@ export default function Enroll() {
         message: ''
     });
 
-    // Check for state passed from Courses page
     useEffect(() => {
         if (location.state && location.state.courseTitle) {
-            setSelectedCourse(location.state.courseTitle);
             setFormData(prev => ({ ...prev, course: location.state.courseTitle }));
         }
     }, [location]);
@@ -38,130 +34,150 @@ export default function Enroll() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-
-        if (name === 'course') {
-            setSelectedCourse(value);
-        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Simulate submission
-        alert(`Thank you for enrolling in ${selectedCourse || 'our course'}! Our team will contact you shortly.`);
+        alert(`Congratulations! You've successfully initiated enrollment for: ${formData.course || 'Selected Course'}. Our admissions team will reach out within 24 hours.`);
         navigate('/');
     };
 
     return (
         <div className="enroll-page">
-            {/* Simple Header for Breadcrumbs */}
-            <div className="page-title">
-                <div className="container d-lg-flex justify-content-between align-items-center">
-                    <h1 className="mb-2 mb-lg-0">Enroll Now</h1>
-                    <nav className="breadcrumbs">
-                        <ol>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/courses">Courses</Link></li>
-                            <li className="current">Enroll</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-
-            <section className="enroll-section">
+            {/* Premium Banner */}
+            <section className="enroll-banner">
                 <div className="container">
-                    <div className="enroll-card" data-aos="fade-up">
-                        <div className="enroll-header">
-                            <h2>Join Techackode Edutech</h2>
-                            <p>Take the first step towards your dream career.</p>
-                        </div>
+                    <div className="banner-content" data-aos="fade-down">
+                        <h1>Start Your <span>Learning Journey</span></h1>
+                        <p>Join thousands of students mastering the future of technology with Techackode.</p>
+                    </div>
+                </div>
+            </section>
 
-                        <div className="enroll-body">
-                            <form onSubmit={handleSubmit}>
-                                <div className="row gy-3">
-                                    <div className="col-md-6">
-                                        <label htmlFor="name" className="form-label">Full Name</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="name"
-                                            name="name"
-                                            placeholder="John Doe"
-                                            required
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                        />
+            <div className="checkout-container">
+                <div className="container">
+                    <div className="checkout-grid">
+
+                        {/* Summary Sidebar */}
+                        <aside className="summary-sidebar" data-aos="fade-right">
+                            <div className="summary-card">
+                                <h3>Enrollment <span>Summary</span></h3>
+
+                                <div className="course-preview-box">
+                                    <p className="small mb-1 uppercase fw-bold">Selected Course</p>
+                                    <h4>{formData.course || "No course selected yet"}</h4>
+                                    <p><i className="bi bi-clock me-2"></i> Lifetime Access Included</p>
+                                </div>
+
+                                <ul className="feature-list-simple">
+                                    <li><i className="bi bi-check-circle-fill"></i> Industry Recognized Certificate</li>
+                                    <li><i className="bi bi-check-circle-fill"></i> 1-on-1 Mentor Support</li>
+                                    <li><i className="bi bi-check-circle-fill"></i> Access to Discord Community</li>
+                                    <li><i className="bi bi-check-circle-fill"></i> Career Placement Assistance</li>
+                                </ul>
+
+                                <div className="trust-badge-checkout">
+                                    <p>Guaranteed Secure Checkout</p>
+                                    <div className="secure-icons">
+                                        <i className="bi bi-shield-check"></i>
+                                        <i className="bi bi-credit-card-2-front"></i>
+                                        <i className="bi bi-lock"></i>
                                     </div>
-                                    <div className="col-md-6">
-                                        <label htmlFor="phone" className="form-label">Phone Number</label>
-                                        <input
-                                            type="tel"
-                                            className="form-control"
-                                            id="phone"
-                                            name="phone"
-                                            placeholder="+91 98765 43210"
-                                            required
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                        />
+                                </div>
+                            </div>
+                        </aside>
+
+                        {/* Enrollment Form */}
+                        <main className="form-main" data-aos="fade-left">
+                            <div className="enroll-form-card">
+                                <h2>Student <span>Information</span></h2>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="form-group-premium">
+                                                <label>Full Name</label>
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    placeholder="e.g. Alex Johnson"
+                                                    required
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="form-group-premium">
+                                                <label>Phone Number</label>
+                                                <input
+                                                    type="tel"
+                                                    name="phone"
+                                                    placeholder="+91 XXXXX XXXXX"
+                                                    required
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="col-12">
-                                        <label htmlFor="email" className="form-label">Email Address</label>
+
+                                    <div className="form-group-premium">
+                                        <label>Email Address</label>
                                         <input
                                             type="email"
-                                            className="form-control"
-                                            id="email"
                                             name="email"
-                                            placeholder="john@example.com"
+                                            placeholder="alex@example.com"
                                             required
                                             value={formData.email}
                                             onChange={handleChange}
                                         />
                                     </div>
-                                    <div className="col-12">
-                                        <label htmlFor="course" className="form-label">Select Course</label>
+
+                                    <div className="form-group-premium">
+                                        <label>Confirm Your Course</label>
                                         <select
-                                            className="form-select"
-                                            id="course"
                                             name="course"
                                             required
-                                            value={selectedCourse}
+                                            value={formData.course}
                                             onChange={handleChange}
                                         >
-                                            <option value="" disabled>-- Choose a Course --</option>
+                                            <option value="" disabled>-- Select a Course --</option>
                                             {courseList.map((course, idx) => (
                                                 <option key={idx} value={course}>{course}</option>
                                             ))}
-                                            <option value="Other">Other / Custom Requirement</option>
+                                            <option value="Special Interest">Other / Special Request</option>
                                         </select>
                                     </div>
-                                    <div className="col-12">
-                                        <label htmlFor="message" className="form-label">Message / Queries (Optional)</label>
+
+                                    <div className="form-group-premium">
+                                        <label>Additional Notes (Optional)</label>
                                         <textarea
-                                            className="form-control"
-                                            id="message"
                                             name="message"
-                                            rows="3"
-                                            placeholder="Any specific questions?"
+                                            rows="4"
+                                            placeholder="Tell us about your background or specific goals..."
                                             value={formData.message}
                                             onChange={handleChange}
                                         ></textarea>
                                     </div>
 
-                                    <div className="col-12">
-                                        <button type="submit" className="btn btn-enroll-submit">
-                                            Confirm Enrollment <i className="bi bi-arrow-right-circle ms-2"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                    <button type="submit" className="btn-submit-premium">
+                                        Complete Enrollment
+                                        <i className="bi bi-arrow-right-short"></i>
+                                    </button>
+                                </form>
 
-                            <div className="text-center mt-4">
-                                <p className="text-muted small mb-2"><i className="bi bi-shield-lock-fill"></i> Your data is secure with us.</p>
+                                <div className="text-center mt-4">
+                                    <p className="text-muted small">
+                                        By clicking "Complete Enrollment", you agree to our
+                                        <Link to="/terms" className="ms-1">Terms of Service</Link>.
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </main>
+
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     );
 }
