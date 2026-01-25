@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import ThreeDMap from '../components/ThreeDMap';
 import './Contact.css';
 
 const Contact = () => {
@@ -146,6 +145,29 @@ const Contact = () => {
                 </form>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="map-section pb-5 pt-4">
+        <div className="container">
+          <div className="section-header text-center mb-5" data-aos="fade-up">
+            <span className="subtitle" style={{ display: 'block', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '700', color: '#135FA2', fontSize: '0.9rem' }}>Locate Us</span>
+            <h2 style={{ fontSize: '2.8rem', fontWeight: '800', marginBottom: '20px', color: '#0d1b2a' }}>Visit Our <span>Office</span></h2>
+            <p style={{ maxWidth: '600px', margin: '0 auto', opacity: '0.8', color: '#444' }}>Our corporate office is located in the heart of Moolakadai. Drop by for career counseling or to learn more about our programs.</p>
+          </div>
+          <div className="map-container-wrapper" data-aos="zoom-in">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15541.917253858!2d80.24337!3d13.132138000000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52655266d9b299%3A0x75c60d709cc3693!2sTechackode%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1769373079765!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Techackode Office Location"
+            ></iframe>
           </div>
         </div>
       </section>
