@@ -1,4 +1,4 @@
-/* Internship Page Premium 3D Styles */
+/* Internship Page — Section-wise layout */
 
 .internship-page {
   background-color: #f8fafc;
@@ -6,91 +6,279 @@
   position: relative;
 }
 
-/* --- Premium Banner --- */
-.internship-banner {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  padding: 120px 0 160px;
+.internship-section {
+  margin-bottom: 0;
   position: relative;
-  overflow: hidden;
-  color: white;
-  text-align: center;
 }
 
-.banner-content {
+/* --- Section 1: Hero (only "From" fee) --- */
+.internship-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  padding: 100px 0 120px;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-shapes::before,
+.hero-shapes::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  animation: shape-float 12s infinite alternate;
+}
+.hero-shapes::before {
+  width: 400px;
+  height: 400px;
+  background: rgba(19, 95, 162, 0.5);
+  top: -100px;
+  right: 10%;
+}
+.hero-shapes::after {
+  width: 300px;
+  height: 300px;
+  background: rgba(0, 255, 135, 0.3);
+  bottom: -50px;
+  left: 5%;
+  animation-delay: -4s;
+}
+
+.hero-container {
   position: relative;
-  z-index: 5;
-  max-width: 900px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.internship-banner h1 {
-  font-size: 4rem;
+.hero-content .banner-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-content h1 {
+  font-size: 3.2rem;
   font-weight: 900;
-  margin-bottom: 24px;
-  line-height: 1.1;
+  margin-bottom: 20px;
+  line-height: 1.15;
   background: linear-gradient(to right, #60efff, #00ff87);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: title-float 3s ease-in-out infinite;
 }
 
-.internship-banner p {
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 40px;
+.hero-content p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 28px;
+  line-height: 1.6;
 }
 
-.price-tag-3d {
+.price-tag-minimal {
   display: inline-block;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 15px 40px;
+  backdrop-filter: blur(8px);
+  padding: 12px 28px;
   border-radius: 100px;
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-size: 1.35rem;
+  font-weight: 700;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.1);
-  transform: perspective(500px) rotateX(10deg);
-  transition: all 0.5s ease;
 }
 
-.price-tag-3d:hover {
-  transform: perspective(500px) rotateX(0deg) scale(1.1);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* --- 3D Visual Elements --- */
-.visual-bg-elements .v-shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: 1;
-  animation: shape-float 10s infinite alternate;
-}
-
-.v-shape-1 {
-  width: 500px;
-  height: 500px;
-  background: rgba(19, 95, 162, 0.3);
-  top: -150px;
-  right: -100px;
-}
-
-.v-shape-2 {
-  width: 400px;
-  height: 400px;
-  background: rgba(0, 255, 135, 0.2);
-  bottom: -100px;
-  left: -50px;
-  animation-delay: -5s;
-}
-
-/* --- Benefits Section --- */
-.internship-main-content {
-  margin-top: -80px;
-  padding-bottom: 100px;
+.hero-img-wrap {
   position: relative;
-  z-index: 10;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+.hero-img-wrap img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+.hero-img-fallback {
+  display: none;
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(135deg, rgba(19, 95, 162, 0.4) 0%, rgba(0, 255, 135, 0.2) 100%);
+  border-radius: 24px;
+}
+.hero-img-fallback.show {
+  display: block;
+}
+
+/* --- Section 2: How It Works --- */
+.section-how {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent-color);
+  margin-bottom: 12px;
+}
+
+.section-title.text-left {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+/* --- Section 3: Worklogz (worklogz.com) --- */
+.section-worklogz {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.section-worklogz-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.worklogz-desc {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.worklogz-desc a {
+  color: var(--accent-color);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.worklogz-desc a:hover {
+  opacity: 0.85;
+}
+
+.worklogz-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.worklogz-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: #334155;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.worklogz-list li i {
+  font-size: 1.25rem;
+  color: #059669;
+  flex-shrink: 0;
+}
+
+.worklogz-visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(19, 95, 162, 0.15);
+}
+
+.worklogz-visual img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.worklogz-img-fallback {
+  display: none;
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
+  border-radius: 20px;
+}
+
+.worklogz-img-fallback.show {
+  display: block;
+}
+
+/* --- Section 4: Roadmap --- */
+.section-roadmap {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.section-roadmap-inner {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.roadmap-visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.roadmap-visual img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.roadmap-img-fallback {
+  display: none;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%);
+  border-radius: 20px;
+}
+
+.roadmap-img-fallback.show {
+  display: block;
+}
+
+/* --- Section 5: Apply --- */
+.section-apply {
+  padding: 80px 0 100px;
+  background: #f8fafc;
+}
+
+.apply-grid {
+  align-items: flex-start;
+}
+
+.apply-info-block .timeline-3d {
+  margin-bottom: 0;
 }
 
 .benefits-grid {
@@ -310,6 +498,301 @@
   box-shadow: 0 15px 35px rgba(19, 95, 162, 0.5);
 }
 
+.btn-enroll-3d:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- Section titles (shared) --- */
+.internship-section .section-title {
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--heading-color, #0f172a);
+}
+
+.section-title span {
+  color: var(--accent-color);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #64748b;
+  max-width: 640px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* --- How it works steps --- */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.step-card {
+  background: white;
+  padding: 28px 24px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(19, 95, 162, 0.12);
+  border-color: rgba(19, 95, 162, 0.2);
+}
+
+.step-num {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: var(--accent-color);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, rgba(19, 95, 162, 0.12) 0%, rgba(19, 95, 162, 0.06) 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+}
+
+.step-card h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--heading-color, #0f172a);
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* --- Worklogz + week plan --- */
+.worklogz-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  padding: 24px 28px;
+  border-radius: 16px;
+  border: 1px solid rgba(19, 95, 162, 0.15);
+  margin-bottom: 36px;
+  max-width: 720px;
+}
+
+.worklogz-badge i {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+
+.worklogz-badge span {
+  color: #475569;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.week-plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.week-plan-item {
+  background: white;
+  padding: 24px 28px;
+  border-radius: 16px;
+  border-left: 4px solid var(--accent-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s;
+}
+
+.week-plan-item:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  transform: translateX(6px);
+}
+
+.week-plan-phase {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-color);
+  margin-bottom: 6px;
+}
+
+.week-plan-item h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--heading-color, #0f172a);
+}
+
+.week-plan-item p {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* --- Fees --- */
+.fees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fee-card {
+  background: white;
+  padding: 32px 28px;
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  border: 2px solid transparent;
+  transition: all 0.35s ease;
+  text-align: center;
+}
+
+.fee-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.1);
+}
+
+.fee-digital {
+  border-color: rgba(19, 95, 162, 0.25);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.fee-digital:hover {
+  border-color: var(--accent-color);
+}
+
+.fee-hardcopy {
+  border-color: rgba(0, 180, 120, 0.25);
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.fee-hardcopy:hover {
+  border-color: #059669;
+}
+
+.fee-amount {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--heading-color, #0f172a);
+  margin-bottom: 12px;
+}
+
+.fee-digital .fee-amount { color: var(--accent-color); }
+.fee-hardcopy .fee-amount { color: #059669; }
+
+.fee-card h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--heading-color, #0f172a);
+}
+
+.fee-card p {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* --- Form extras --- */
+.form-intro {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.form-error {
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.submit-success-msg {
+  text-align: center;
+  padding: 32px 24px;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.submit-success-msg i {
+  font-size: 3rem;
+  color: #059669;
+  margin-bottom: 16px;
+}
+
+.submit-success-msg h4 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 8px;
+}
+
+.submit-success-msg p {
+  color: #047857;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.domain-list-mini {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.8;
+}
+
+.domain-list-mini li::before {
+  content: '▸ ';
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
 /* --- Animations --- */
 @keyframes title-float {
 
@@ -335,7 +818,29 @@
 
 /* --- Responsive --- */
 @media (max-width: 991px) {
-  .premium-layout-grid {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-content .banner-badge { margin-bottom: 16px; }
+  .hero-content h1 { font-size: 2.4rem; }
+  .hero-img-wrap { order: -1; max-width: 480px; margin: 0 auto; }
+
+  .section-worklogz-inner,
+  .section-roadmap-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .section-roadmap-inner .roadmap-visual { order: -1; }
+  .section-title.text-left { text-align: center; }
+  .worklogz-content { text-align: center; }
+  .roadmap-content { text-align: left; }
+
+  .premium-layout-grid,
+  .apply-grid {
     grid-template-columns: 1fr;
   }
 
@@ -343,18 +848,41 @@
     position: static;
     transform: none !important;
   }
-
-  .internship-banner h1 {
-    font-size: 2.5rem;
-  }
 }
 
 @media (max-width: 576px) {
-  .internship-banner {
-    padding: 80px 0 120px;
+  .internship-hero {
+    padding: 60px 0 80px;
   }
 
-  .benefits-grid {
+  .hero-content h1 {
+    font-size: 1.85rem;
+  }
+
+  .price-tag-minimal {
+    font-size: 1.15rem;
+    padding: 10px 22px;
+  }
+
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .section-how,
+  .section-worklogz,
+  .section-roadmap {
+    padding: 50px 0;
+  }
+
+  .section-apply {
+    padding: 50px 0 70px;
+  }
+
+  .steps-grid {
     grid-template-columns: 1fr;
+  }
+
+  .worklogz-list li {
+    font-size: 0.95rem;
   }
 }
