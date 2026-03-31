@@ -25,6 +25,7 @@ export default function Internship() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submittedData, setSubmittedData] = useState(null);
+  const [showErrorToast, setShowErrorToast] = useState(false);
 
   const domains = [
     'Full Stack Development',
@@ -58,6 +59,7 @@ export default function Internship() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitError('');
+    setShowErrorToast(false);
     setSubmitSuccess(false);
     setSubmittedData(null);
     if (GOOGLE_SCRIPT_URL) {
@@ -80,6 +82,7 @@ export default function Internship() {
         setSubmittedData(formData);
       } catch (err) {
         setSubmitError('Submission failed. Please try again or contact us.');
+        setShowErrorToast(true);
       } finally {
         setSubmitting(false);
       }
@@ -131,6 +134,26 @@ export default function Internship() {
 
   return (
     <div className="internship-page">
+      {submitError && showErrorToast && (
+        <div className="toast toast-error">
+          <div className="toast-content">
+            <span className="toast-icon">
+              <i className="bi bi-exclamation-triangle-fill" />
+            </span>
+            <div className="toast-text">
+              <strong>Error</strong>
+              <span>{submitError}</span>
+            </div>
+            <button
+              type="button"
+              className="toast-close"
+              onClick={() => setShowErrorToast(false)}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
       {/* Section 1: Hero — only "From" fee shown */}
       <section className="internship-section internship-hero">
         <div className="hero-bg-wrap">
