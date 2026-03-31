@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import './Internship.css';
 
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbwBWJc70V5AQNKyJyyf0G2uejds_nDyFW4GPqP_swhBQzmMb1XTJfAjKqWZ3mSjuGZXYQ/exec';
+  'https://script.google.com/macros/s/AKfycbzAeH1qQBEOsxM7JJyxLTKLitLX6bwbgPRHzCwWCVeHJ8voxfXu4PaJruCdW2oRXPVTGQ/exec';
 
 // Section images: place in public/images/internship/ (or use AI-generated assets)
 const IMG = {
@@ -25,7 +25,6 @@ export default function Internship() {
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
-  const [submittedData, setSubmittedData] = useState(null);
   const [toast, setToast] = useState({ type: '', message: '' });
 
   const domains = [
@@ -62,7 +61,6 @@ export default function Internship() {
     setSubmitError('');
     setToast({ type: '', message: '' });
     setSubmitSuccess(false);
-    setSubmittedData(null);
     if (GOOGLE_SCRIPT_URL) {
       try {
         const payload = new URLSearchParams();
@@ -80,7 +78,6 @@ export default function Internship() {
         }
 
         setSubmitSuccess(true);
-        setSubmittedData(formData);
         setToast({
           type: 'success',
           message: 'Application received! Our team will contact you soon.'
@@ -97,51 +94,12 @@ export default function Internship() {
     } else {
       console.log('Internship form:', formData);
       setSubmitSuccess(true);
-      setSubmittedData(formData);
       setToast({
         type: 'success',
         message: 'Application received! Our team will contact you soon.'
       });
       setSubmitting(false);
     }
-  };
-
-  const handleDownloadExcel = () => {
-    if (!submittedData) return;
-
-    const headers = ['Name', 'Email', 'Phone', 'Domain', 'Experience Letter Type', 'Message'];
-    const values = [
-      submittedData.name,
-      submittedData.email,
-      submittedData.phone,
-      submittedData.domain,
-      submittedData.experienceLetterType,
-      submittedData.message
-    ];
-
-    const escapeCsvValue = (value) => {
-      if (value == null) return '';
-      const stringValue = String(value);
-      if (/[",\n]/.test(stringValue)) {
-        return `"${stringValue.replace(/"/g, '""')}"`;
-      }
-      return stringValue;
-    };
-
-    const csvContent = [
-      headers.join(','),
-      values.map(escapeCsvValue).join(',')
-    ].join('\n');
-
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `internship-application-${submittedData.name || 'candidate'}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
   };
 
   useEffect(() => {
@@ -294,11 +252,6 @@ export default function Internship() {
                     <i className="bi bi-check-circle-fill"></i>
                     <h4>Application received!</h4>
                     <p>Our team will add you to Google Chat and share next steps soon.</p>
-                    {submittedData && (
-                      <button type="button" className="btn-enroll-3d mt-3" onClick={handleDownloadExcel}>
-                        Download Excel Copy
-                      </button>
-                    )}
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
