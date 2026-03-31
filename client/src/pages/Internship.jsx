@@ -24,6 +24,7 @@ export default function Internship() {
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [submittedData, setSubmittedData] = useState(null);
 
   const domains = [
     'Full Stack Development',
@@ -58,12 +59,25 @@ export default function Internship() {
     setSubmitting(true);
     setSubmitError('');
     setSubmitSuccess(false);
+    setSubmittedData(null);
     if (GOOGLE_SCRIPT_URL) {
       try {
-        const payload = new FormData();
-        Object.keys(formData).forEach((key) => payload.append(key, formData[key] || ''));
-        await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: payload });
+        const payload = new URLSearchParams();
+        Object.keys(formData).forEach((key) => {
+          payload.append(key, formData[key] || '');
+        });
+
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          body: payload
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
         setSubmitSuccess(true);
+        setSubmittedData(formData);
       } catch (err) {
         setSubmitError('Submission failed. Please try again or contact us.');
       } finally {
@@ -72,8 +86,47 @@ export default function Internship() {
     } else {
       console.log('Internship form:', formData);
       setSubmitSuccess(true);
+      setSubmittedData(formData);
       setSubmitting(false);
     }
+  };
+
+  const handleDownloadExcel = () => {
+    if (!submittedData) return;
+
+    const headers = ['Name', 'Email', 'Phone', 'Domain', 'Experience Letter Type', 'Message'];
+    const values = [
+      submittedData.name,
+      submittedData.email,
+      submittedData.phone,
+      submittedData.domain,
+      submittedData.experienceLetterType,
+      submittedData.message
+    ];
+
+    const escapeCsvValue = (value) => {
+      if (value == null) return '';
+      const stringValue = String(value);
+      if (/[",\n]/.test(stringValue)) {
+        return `"${stringValue.replace(/"/g, '""')}"`;
+      }
+      return stringValue;
+    };
+
+    const csvContent = [
+      headers.join(','),
+      values.map(escapeCsvValue).join(',')
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', `internship-application-${submittedData.name || 'candidate'}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -198,6 +251,11 @@ export default function Internship() {
                     <i className="bi bi-check-circle-fill"></i>
                     <h4>Application received!</h4>
                     <p>Our team will add you to Google Chat and share next steps soon.</p>
+                    {submittedData && (
+                      <button type="button" className="btn-enroll-3d mt-3" onClick={handleDownloadExcel}>
+                        Download Excel Copy
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
