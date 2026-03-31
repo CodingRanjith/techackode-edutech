@@ -803,6 +803,25 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
+.toast-success .toast-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.toast-success .toast-icon {
+  color: #16a34a;
+}
+
+.toast-success .toast-text {
+  color: #166534;
+}
+
 .toast-icon {
   color: #dc2626;
   font-size: 1.4rem;

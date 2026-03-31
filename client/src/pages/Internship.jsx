@@ -3,7 +3,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './Internship.css';
 
-const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL || '';
+const GOOGLE_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbwBWJc70V5AQNKyJyyf0G2uejds_nDyFW4GPqP_swhBQzmMb1XTJfAjKqWZ3mSjuGZXYQ/exec';
 
 // Section images: place in public/images/internship/ (or use AI-generated assets)
 const IMG = {
@@ -25,7 +26,7 @@ export default function Internship() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submittedData, setSubmittedData] = useState(null);
-  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [toast, setToast] = useState({ type: '', message: '' });
 
   const domains = [
     'Full Stack Development',
@@ -59,7 +60,7 @@ export default function Internship() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitError('');
-    setShowErrorToast(false);
+    setToast({ type: '', message: '' });
     setSubmitSuccess(false);
     setSubmittedData(null);
     if (GOOGLE_SCRIPT_URL) {
@@ -80,9 +81,16 @@ export default function Internship() {
 
         setSubmitSuccess(true);
         setSubmittedData(formData);
+        setToast({
+          type: 'success',
+          message: 'Application received! Our team will contact you soon.'
+        });
       } catch (err) {
         setSubmitError('Submission failed. Please try again or contact us.');
-        setShowErrorToast(true);
+        setToast({
+          type: 'error',
+          message: 'Submission failed. Please try again or contact us.'
+        });
       } finally {
         setSubmitting(false);
       }
@@ -90,6 +98,10 @@ export default function Internship() {
       console.log('Internship form:', formData);
       setSubmitSuccess(true);
       setSubmittedData(formData);
+      setToast({
+        type: 'success',
+        message: 'Application received! Our team will contact you soon.'
+      });
       setSubmitting(false);
     }
   };
@@ -132,22 +144,30 @@ export default function Internship() {
     URL.revokeObjectURL(url);
   };
 
+  useEffect(() => {
+    if (!toast.type) return;
+    const timer = setTimeout(() => {
+      setToast({ type: '', message: '' });
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [toast]);
+
   return (
     <div className="internship-page">
-      {submitError && showErrorToast && (
-        <div className="toast toast-error">
+      {toast.type && (
+        <div className={`toast ${toast.type === 'error' ? 'toast-error' : 'toast-success'}`}>
           <div className="toast-content">
             <span className="toast-icon">
-              <i className="bi bi-exclamation-triangle-fill" />
+              <i className={toast.type === 'error' ? 'bi bi-exclamation-triangle-fill' : 'bi bi-check-circle-fill'} />
             </span>
             <div className="toast-text">
-              <strong>Error</strong>
-              <span>{submitError}</span>
+              <strong>{toast.type === 'error' ? 'Error' : 'Success'}</strong>
+              <span>{toast.message}</span>
             </div>
             <button
               type="button"
               className="toast-close"
-              onClick={() => setShowErrorToast(false)}
+              onClick={() => setToast({ type: '', message: '' })}
             >
               ×
             </button>
