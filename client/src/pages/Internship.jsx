@@ -20,6 +20,7 @@ export default function Internship() {
     domain: '',
     phone: '',
     experienceLetterType: 'digital',
+    fee: '1000',
     message: ''
   });
   const [submitting, setSubmitting] = useState(false);
@@ -271,10 +272,20 @@ export default function Internship() {
                       </select>
                     </div>
                     <div className="premium-input-group">
-                      <label className="input-label">Experience letter</label>
-                      <select value={formData.experienceLetterType} onChange={(e) => setFormData({ ...formData, experienceLetterType: e.target.value })}>
-                        <option value="digital">Digital</option>
-                        <option value="hardcopy">Hard copy (courier)</option>
+                      <label className="input-label">Experience letter (fee)</label>
+                      <select
+                        value={formData.experienceLetterType}
+                        onChange={(e) => {
+                          const v = e.target.value;
+                          setFormData({
+                            ...formData,
+                            experienceLetterType: v,
+                            fee: v === 'digital' ? '1000' : '1500'
+                          });
+                        }}
+                      >
+                        <option value="digital">Digital — ₹1,000</option>
+                        <option value="hardcopy">Hard copy (courier) — ₹1,500</option>
                       </select>
                     </div>
                     <div className="premium-input-group">
