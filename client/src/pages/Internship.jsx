@@ -143,7 +143,7 @@ export default function Internship() {
             <span className="banner-badge">1-Month Real-Time Experience</span>
             <h1>Internship in <span>Your Tech Domain</span></h1>
             <p>Work like a real employee: daily check-in, tasks on Worklogz, Google Chat with your team lead, and a final project. Get your experience letter at the end.</p>
-            <div className="price-tag-minimal">From ₹1,000</div>
+            {/* <div className="price-tag-minimal">From ₹1,000</div> */}
           </div>
           <div className="hero-img-wrap" data-aos="fade-left">
             <img src={IMG.hero} alt="Internship workspace" onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling?.classList.add('show'); }} />
